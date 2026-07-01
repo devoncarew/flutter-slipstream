@@ -22,7 +22,7 @@ jobs:
           channel: ${{ matrix.sdk }}
 
       # Clone devoncarew/flutter-slipstream.
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           path: flutter-slipstream
 
@@ -37,7 +37,7 @@ jobs:
         working-directory: flutter-slipstream
 
       # Clone devoncarew/slipstream_agent.
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           repository: devoncarew/slipstream_agent
           path: slipstream_agent
