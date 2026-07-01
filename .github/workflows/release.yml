@@ -14,7 +14,7 @@ jobs:
       pull-requests: write # add labels and comments to PRs
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 2 # need HEAD^ for version comparison on main
 
