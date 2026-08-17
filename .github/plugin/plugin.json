@@ -1,7 +1,7 @@
 {
   "_comment": "GitHub Copilot manifest",
   "name": "flutter-slipstream",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Live Flutter app introspection for coding agents: screenshots, widget-tree inspection, tap/type/scroll, and error capture. Dart package API summarization for agents.",
   "repository": "https://github.com/devoncarew/flutter-slipstream",
   "license": "BSD-3-Clause",

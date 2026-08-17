@@ -1,4 +1,4 @@
-## 1.6.1-wip
+## 1.6.1
 
 - Fixed `run_app` failing on Windows with "The system cannot find the file
   specified". The inspector now spawns `flutter.bat` on Windows instead of a
