@@ -46,17 +46,30 @@ dart run tool/repo.dart generate-docs
 
 ## Releasing
 
-Releases are triggered automatically when a version-bump PR lands on `main`. To
-prepare a release:
+Releases are automated: when a commit that bumps the plugin version lands on
+`main`, CI publishes a GitHub release tagged `vX.Y.Z` with the matching
+`CHANGELOG.md` section as the release notes.
 
-1. Update `CHANGELOG.md` — rename the `X.Y.Z-wip` section to `X.Y.Z` and add a
-   new `X+1.Y.Z-wip` section at the top.
-2. Bump the `version` field in `.claude-plugin/plugin.json`,
-   `gemini-extension.json`, and `.github/plugin/plugn.json` to match.
-3. Open a PR. CI will detect the version bump, label it `release-pr`, and post a
-   comment confirming the version that will be published.
-4. Once the PR lands, CI creates a GitHub release tagged `vX.Y.Z` with the
-   matching changelog section as the release notes.
+Changelog entries accumulate during development under a top `## X.Y.Z-wip`
+heading. Add your entry there in your feature PR, creating the heading if it
+doesn't exist yet.
 
-`dart run tool/repo.dart check-versions` validates that the file version
-infomation is in sync.
+To cut a release:
+
+1. Run `dart run tool/repo.dart bump-version`. With no argument it reads the
+   version from the top `-wip` changelog heading, then:
+   - bumps the `version` field in all four manifests
+     (`.claude-plugin/plugin.json`, `.cursor-plugin/plugin.json`,
+     `.github/plugin/plugin.json`, and `gemini-extension.json`), and
+   - renames the `## X.Y.Z-wip` changelog heading to `## X.Y.Z`.
+
+   Pass an explicit version (e.g. `dart run tool/repo.dart bump-version 1.7.0`)
+   to override the derived one.
+2. Open a PR with those changes. The Release workflow detects the version bump,
+   labels the PR `release-pr`, and posts a comment with the notes that will be
+   published.
+3. Once the PR lands on `main`, the same workflow creates the GitHub release
+   tagged `vX.Y.Z`.
+
+`dart run tool/repo.dart check-versions` validates that the version is in sync
+across all four manifests and the changelog; CI runs it on every PR.
