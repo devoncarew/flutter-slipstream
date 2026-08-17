@@ -1,3 +1,9 @@
+## 1.6.1-wip
+
+- Fixed `run_app` failing on Windows with "The system cannot find the file
+  specified". The inspector now spawns `flutter.bat` on Windows instead of a
+  bare `flutter`, which `CreateProcess` cannot resolve (#127).
+
 ## 1.6.0
 
 - Added support for Cursor (note: not yet in cursor.com/marketplace /

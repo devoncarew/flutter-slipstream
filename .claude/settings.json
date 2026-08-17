@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "mcp__plugin_flutter-slipstream_*",
+      "mcp__plugin_flutter-slipstream_inspector__*",
+      "mcp__plugin_flutter-slipstream_packages__*",
       "Bash(dart *)",
       "Bash(flutter *)",
       "Bash(gh api:*)",

@@ -42,6 +42,15 @@ class AppSession {
   final Process _process;
   String? _appId;
 
+  /// The Flutter CLI executable name.
+  ///
+  /// On Windows the launcher is `flutter.bat`; a bare `'flutter'` spawn fails
+  /// because `CreateProcess` only appends `.exe` to an extensionless name
+  /// (PATHEXT is applied by `cmd.exe`, not the Win32 API), so it never resolves
+  /// to `flutter.bat`.
+  static final String _flutterExecutable =
+      Platform.isWindows ? 'flutter.bat' : 'flutter';
+
   /// The 'flutter run' device ID that we launched on.
   final String? deviceId;
 
@@ -128,7 +137,7 @@ class AppSession {
     ];
 
     final Process process = await Process.start(
-      'flutter',
+      _flutterExecutable,
       args,
       workingDirectory: workingDirectory,
     );
@@ -262,7 +271,7 @@ class AppSession {
 
   /// Runs `flutter devices --machine` and returns the parsed JSON list.
   static Future<List<Map<String, dynamic>>> _getDevices() async {
-    final ProcessResult result = await Process.run('flutter', [
+    final ProcessResult result = await Process.run(_flutterExecutable, [
       'devices',
       '--machine',
     ]);
