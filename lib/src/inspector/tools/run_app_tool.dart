@@ -42,6 +42,11 @@ class RunAppTool extends InspectorTool {
               'best available device (prefers desktop for fast builds). Only '
               'pass this if the user requests a specific device.',
         ),
+        'flavor': Schema.string(
+          description:
+              'Optional build flavor (passed as --flavor). Required for '
+              'projects whose iOS/Android targets define flavor schemes.',
+        ),
       },
       required: ['working_directory'],
     ),
@@ -58,6 +63,7 @@ class RunAppTool extends InspectorTool {
     final String workingDirectory = args['working_directory'] as String;
     final String? device = args['device'] as String?;
     final String? target = args['target'] as String?;
+    final String? flavor = args['flavor'] as String?;
 
     final dir = Directory(workingDirectory);
     if (!dir.isAbsolute) {
@@ -80,6 +86,7 @@ class RunAppTool extends InspectorTool {
         sessionFinishedListener: context.handleSessionClosed,
         deviceId: device,
         target: target,
+        flavor: flavor,
         serverLog: context.log,
       );
     } catch (e) {

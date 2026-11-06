@@ -1,3 +1,9 @@
+## 1.6.2-wip
+
+- Added a `flavor` parameter to `run_app`, passed through as `--flavor`. Apps
+  whose Android or iOS targets define flavor schemes previously could not be
+  launched by the inspector.
+
 ## 1.6.1
 
 - Fixed `run_app` failing on Windows with "The system cannot find the file
