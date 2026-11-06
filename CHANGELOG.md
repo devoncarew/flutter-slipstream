@@ -2,9 +2,8 @@
 
 - Fixed the Claude Code plugin manifest: MCP servers now declare `command` and
   `args` separately. Claude Code spawns `command` directly, so the previous
-  `"dart run …"` command string failed with `posix_spawn` ENOENT and neither
-  server started. `validate-manifests` now rejects command strings with inline
-  arguments.
+  `"dart run …"` command string failed to spawn and neither server started.
+  `validate-manifests` now rejects command strings with inline arguments.
 
 ## 1.6.1
 
