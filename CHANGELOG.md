@@ -1,3 +1,11 @@
+## 1.6.2-wip
+
+- Fixed the Claude Code plugin manifest: MCP servers now declare `command` and
+  `args` separately. Claude Code spawns `command` directly, so the previous
+  `"dart run …"` command string failed with `posix_spawn` ENOENT and neither
+  server started. `validate-manifests` now rejects command strings with inline
+  arguments.
+
 ## 1.6.1
 
 - Fixed `run_app` failing on Windows with "The system cannot find the file
