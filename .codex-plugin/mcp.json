@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "packages": {
+      "type": "stdio",
+      "command": "dart",
+      "args": ["run", "bin/packages_mcp.dart"]
+    },
+    "inspector": {
+      "type": "stdio",
+      "command": "dart",
+      "args": ["run", "bin/inspector_mcp.dart"]
+    }
+  }
+}
