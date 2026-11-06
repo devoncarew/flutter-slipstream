@@ -1,5 +1,9 @@
 # Inspector MCP Tool Reference
 
+> For agents working on this repo: the inspector MCP server's code layout and
+> tool parameters. End-user agent guidance is in the `slipstream-inspector`
+> skill.
+
 Server entry point: `bin/inspector_mcp.dart`
 
 Tools for launching, inspecting, and interacting with a running Flutter app.

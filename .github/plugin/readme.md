@@ -1,5 +1,8 @@
 # GitHub Copilot plugin info
 
+> For agents working on this repo: Copilot manifest quirks, distribution, and
+> loading the plugin locally.
+
 ## Implementation specific files
 
 - .github/plugin/plugin.json

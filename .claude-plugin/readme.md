@@ -1,5 +1,8 @@
 # Claude Code plugin info
 
+> For agents working on this repo: Claude Code manifest quirks, distribution,
+> and loading the plugin locally.
+
 ## Implementation specific files
 
 - .claude-plugin/plugin.json

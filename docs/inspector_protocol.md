@@ -1,9 +1,8 @@
 # Flutter Inspector Protocol Reference
 
-Protocol specifics for `ext.flutter.inspector.*` extensions, derived from
-reading the Flutter DevTools source. Covers the full extension list, critical
-parameter quirks, DiagnosticsNode shape, and confirmed gotchas. Read this when
-implementing or debugging inspector protocol calls.
+> For agents working on the inspector server: `ext.flutter.inspector.*`
+> protocol details from DevTools source (extension list, parameter quirks,
+> `DiagnosticsNode` shape). Read when implementing or debugging protocol calls.
 
 ## Extension Name Prefix
 

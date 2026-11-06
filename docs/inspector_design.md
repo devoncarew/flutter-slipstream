@@ -1,10 +1,8 @@
 # Inspector MCP: Implementation Design
 
-Design details for the `inspector` MCP server: device auto-selection,
-`get_route` capabilities and limitations, go_router path enrichment via VM
-evaluate, and programmatic navigation. Read when working on `run_app`,
-`get_route`, `navigate`, or the session lifecycle in
-`lib/src/inspector/inspector_mcp.dart`.
+> For agents working on the inspector server: device auto-selection,
+> `get_route` limits, go_router path enrichment, and programmatic navigation.
+> Read when working on `run_app`, `get_route`, `navigate`, or session lifecycle.
 
 ## Device Auto-Selection
 
