@@ -829,11 +829,17 @@ class FlutterServiceExtensions {
   /// service `evaluate` RPC runs real Dart code and returns the exact value.
   /// Returns null if the expression cannot be evaluated or the result cannot
   /// be parsed.
+  ///
+  /// Evaluates in `widgets/binding.dart` rather than the root library, so this
+  /// works for entrypoints that don't import Flutter widgets (#135).
   Future<(double, double)?> getPhysicalWindowSize() async {
     final VM vm = await _vmService.getVM();
     for (final IsolateRef ref in vm.isolates ?? []) {
       final Isolate isolate = await _vmService.getIsolate(ref.id!);
-      final String? libId = isolate.rootLib?.id;
+      final String? libId = _libraryIdForUri(
+        isolate,
+        'package:flutter/src/widgets/binding.dart',
+      );
       if (libId == null) continue;
 
       final Response result = await _vmService.evaluate(

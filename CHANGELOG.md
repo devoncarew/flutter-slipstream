@@ -7,6 +7,10 @@
 - Added a `flavor` parameter to `run_app`, passed through as `--flavor`. Apps
   whose Android or iOS targets define flavor schemes previously could not be
   launched by the inspector.
+- Fixed `take_screenshot` failing with "Undefined name 'WidgetsBinding'" when
+  the app's entrypoint doesn't import Flutter widgets (#135).
+- Added guidance for custom entrypoints such as `flutter_driver` harnesses to
+  the `slipstream-inspector` skill (thanks @ragavendranbala-TSL, #133).
 
 ## 1.6.1
 

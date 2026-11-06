@@ -98,6 +98,13 @@ numeric node ID with `perform_semantic_action`.
 chip is visible in the screenshot, call `get_output` to clear it before
 retaking.
 
+### Custom entrypoints (e.g. `flutter_driver`)
+
+Pass the entrypoint as `run_app(target: "lib/main_driver.dart")`. In that file,
+call `SlipstreamAgent.init()` before `enableFlutterDriverExtension()`, and pass
+`enableTextEntryEmulation: false` so the real keyboard works. `evaluate` uses
+the entrypoint library's imports.
+
 ## Debugging layout problems
 
 - `inspect_layout` with no `widget_id` starts from the root.
