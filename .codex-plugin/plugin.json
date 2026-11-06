@@ -1,0 +1,24 @@
+{
+  "_comment": "Codex manifest",
+  "name": "flutter-slipstream",
+  "version": "1.6.0",
+  "description": "Live Flutter app introspection for coding agents: screenshots, widget-tree inspection, tap/type/scroll, and error capture. Dart package API summarization for agents.",
+  "repository": "https://github.com/devoncarew/flutter-slipstream",
+  "license": "BSD-3-Clause",
+  "keywords": ["dart", "flutter"],
+  "mcpServers": "./.codex-plugin/mcp.json",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Flutter Slipstream",
+    "shortDescription": "Live Flutter app introspection for coding agents.",
+    "longDescription": "Live Flutter app introspection for coding agents: screenshots, widget-tree inspection, tap/type/scroll, and error capture. Dart package API summarization for agents.",
+    "developerName": "Devon Carew",
+    "category": "Coding",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "websiteURL": "https://github.com/devoncarew/flutter-slipstream",
+    "privacyPolicyURL": "https://github.com/devoncarew/flutter-slipstream/blob/main/privacy_policy.md",
+    "brandColor": "#586FF6",
+    "logo": "./docs/slipstream_logo_512.png",
+    "screenshots": ["./docs/slipstream_banner.png"]
+  }
+}
