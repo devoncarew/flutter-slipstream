@@ -1,3 +1,10 @@
+## 1.6.2-wip
+
+- Documented custom `flutter_driver` entrypoints in `docs/slipstream_agent.md`:
+  initialization order, disabling text-entry emulation so the real keyboard
+  works, and importing `flutter/material.dart` so `evaluate` and the screenshot
+  probe can resolve `WidgetsBinding` in the root library.
+
 ## 1.6.1
 
 - Fixed `run_app` failing on Windows with "The system cannot find the file
