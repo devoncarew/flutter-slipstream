@@ -36,7 +36,13 @@ void main(List<String> args) async {
 final String claudeManifest = '.claude-plugin/plugin.json';
 final String cursorManifest = '.cursor-plugin/plugin.json';
 final String copilotManifest = '.github/plugin/plugin.json';
-final String geminiManifest = 'gemini-extension.json';
+
+/// All plugin manifests whose versions are kept in sync.
+final List<String> manifests = [
+  claudeManifest,
+  cursorManifest,
+  copilotManifest,
+];
 
 // ---------------------------------------------------------------------------
 
@@ -46,17 +52,17 @@ class CheckCommand extends Command<void> {
 
   @override
   String get description =>
-      'Validate version consistency across plugin.json, '
-      'gemini-extension.json, and CHANGELOG.md.';
+      'Validate version consistency across the plugin manifests and '
+      'CHANGELOG.md.';
 
   @override
   Future<void> run() async {
     final errors = <String>[];
 
-    final claudeVersion = _readJsonVersion(claudeManifest, errors);
-    final cursorVersion = _readJsonVersion(cursorManifest, errors);
-    final copilotVersion = _readJsonVersion(copilotManifest, errors);
-    final geminiVersion = _readJsonVersion(geminiManifest, errors);
+    final Map<String, String?> versions = {
+      for (final m in manifests) m: _readJsonVersion(m, errors),
+    };
+    final String? claudeVersion = versions[claudeManifest];
     final changelogVersions = _readChangelogVersions('CHANGELOG.md', errors);
 
     if (errors.isNotEmpty) {
@@ -69,14 +75,10 @@ class CheckCommand extends Command<void> {
     var failed = false;
 
     // Versions in the manifest files must match.
-    if (claudeVersion != copilotVersion ||
-        claudeVersion != geminiVersion ||
-        claudeVersion != cursorVersion) {
+    if (versions.values.toSet().length != 1) {
       stderr.writeln(
-        'error: version mismatch; $claudeManifest=$claudeVersion, '
-        '$cursorManifest=$cursorVersion, '
-        '$copilotManifest=$copilotVersion, '
-        '$geminiManifest=$geminiVersion',
+        'error: version mismatch; '
+        '${versions.entries.map((e) => '${e.key}=${e.value}').join(', ')}',
       );
       failed = true;
     }
@@ -95,16 +97,9 @@ class CheckCommand extends Command<void> {
 
     if (failed) exit(1);
 
-    final all = [
-      claudeManifest,
-      cursorManifest,
-      copilotManifest,
-      geminiManifest,
-    ];
-
     print(
       'ok — version $claudeVersion is consistent across '
-      '${all.join(', ')}, and CHANGELOG.md',
+      '${manifests.join(', ')}, and CHANGELOG.md',
     );
   }
 }
@@ -134,10 +129,9 @@ class ValidateManifestsCommand extends Command<void> {
     var failed = false;
 
     // Validate the plugin manifests.
-    failed |= _validateJson(claudeManifest, _manifestKeys);
-    failed |= _validateJson(cursorManifest, _manifestKeys);
-    failed |= _validateJson(copilotManifest, _manifestKeys);
-    failed |= _validateJson(geminiManifest, _manifestKeys);
+    for (final m in manifests) {
+      failed |= _validateJson(m, _manifestKeys);
+    }
     failed |= _validateClaudeServerCommands(claudeManifest);
 
     if (failed) exit(1);
@@ -257,8 +251,8 @@ class BumpVersionCommand extends Command<void> {
 
   @override
   String get description =>
-      'Bump the release version in plugin.json, gemini-extension.json, and '
-      'CHANGELOG.md. Defaults to the current -wip version.';
+      'Bump the release version in the plugin manifests and CHANGELOG.md. '
+      'Defaults to the current -wip version.';
 
   @override
   String get invocation => '${runner!.executableName} bump-version [<version>]';
@@ -290,11 +284,9 @@ class BumpVersionCommand extends Command<void> {
       version = argResults!.rest.first;
     }
 
-    // Update both manifest files and the optional GitHub plugin manifest.
-    _bumpJsonVersion(claudeManifest, version);
-    _bumpJsonVersion(cursorManifest, version);
-    _bumpJsonVersion(copilotManifest, version);
-    _bumpJsonVersion(geminiManifest, version);
+    for (final m in manifests) {
+      _bumpJsonVersion(m, version);
+    }
 
     // Rename the -wip heading in CHANGELOG.md.
     _bumpChangelog('CHANGELOG.md', version);

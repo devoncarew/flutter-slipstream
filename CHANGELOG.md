@@ -1,3 +1,8 @@
+## 1.7.0-wip
+
+- Removed Gemini CLI support; Gemini CLI has been retired in favor of
+  Antigravity.
+
 ## 1.6.2
 
 - Fixed the Claude Code plugin manifest: MCP servers now declare `command` and

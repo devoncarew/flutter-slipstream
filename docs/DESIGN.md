@@ -22,10 +22,9 @@ failure modes:
 
 ## Distribution
 
-Shipped as a Claude Code plugin, a Gemini CLI extension, and a GitHub Copilot
-extension. Each distribution registers the same MCP servers and a skill that
-guides package safety — the agent-facing tool surface is identical across all
-three.
+Shipped as a Claude Code plugin, a Cursor plugin, and a GitHub Copilot plugin.
+Each distribution registers the same MCP servers and skills — the agent-facing
+tool surface is identical across all of them.
 
 Low-friction installation: no manual server setup or prompt engineering
 required. Tools are automatically available via native primitives (Hooks, MCP)
@@ -35,8 +34,7 @@ without requiring explicit agent instruction.
 
 **Mechanism:** An `add-package` skill that fires automatically when an agent is
 about to add a Dart or Flutter package dependency (via `flutter pub add`,
-`dart pub add`, or a direct `pubspec.yaml` edit). For Gemini CLI, equivalent
-guidance is embedded in `.gemini-extension/GEMINI.md`.
+`dart pub add`, or a direct `pubspec.yaml` edit).
 
 **Behavior:** The skill instructs the agent to use `flutter pub add` (not direct
 pubspec edits) so that pub output is always visible, then to read that output
