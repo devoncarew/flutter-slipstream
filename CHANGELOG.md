@@ -4,6 +4,9 @@
   `args` separately. Claude Code spawns `command` directly, so the previous
   `"dart run …"` command string failed to spawn and neither server started.
   `validate-manifests` now rejects command strings with inline arguments.
+- Added a `flavor` parameter to `run_app`, passed through as `--flavor`. Apps
+  whose Android or iOS targets define flavor schemes previously could not be
+  launched by the inspector.
 
 ## 1.6.1
 
