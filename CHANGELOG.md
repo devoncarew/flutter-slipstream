@@ -2,6 +2,7 @@
 
 - Removed Gemini CLI support; Gemini CLI has been retired in favor of
   Antigravity.
+- Removed Cursor support.
 
 ## 1.6.2
 

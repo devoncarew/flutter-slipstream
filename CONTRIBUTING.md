@@ -53,8 +53,7 @@ To cut a release:
 1. Run `dart run tool/repo.dart bump-version`. With no argument it reads the
    version from the top `-wip` changelog heading, then:
    - bumps the `version` field in all plugin manifests
-     (`.claude-plugin/plugin.json`, `.cursor-plugin/plugin.json`,
-     and `.github/plugin/plugin.json`), and
+     (`.claude-plugin/plugin.json` and `.github/plugin/plugin.json`), and
    - renames the `## X.Y.Z-wip` changelog heading to `## X.Y.Z`.
 
    Pass an explicit version (e.g. `dart run tool/repo.dart bump-version 1.7.0`)

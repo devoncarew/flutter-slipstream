@@ -35,7 +35,6 @@
 ## Supported Coding Agents
 
 - Claude Code implementation notes at @.claude-plugin/readme.md
-- Cursor implementation notes at @.cursor-plugin/readme.md
 - GitHub Copilot implementation notes at @.github/plugin/readme.md
 
 ## Development
