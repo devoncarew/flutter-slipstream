@@ -1,4 +1,4 @@
-## 1.6.2-wip
+## 1.6.2
 
 - Fixed the Claude Code plugin manifest: MCP servers now declare `command` and
   `args` separately. Claude Code spawns `command` directly, so the previous
