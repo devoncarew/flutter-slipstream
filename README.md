@@ -35,7 +35,6 @@ This addresses two structural problems that agents face:
 | -------------- | ------------------------------------------------------------------------------------------------------------------ |
 | Claude Code \* | `claude plugin marketplace add devoncarew/slipstream` <br> `claude plugin install flutter-slipstream@slipstream`   |
 | GitHub Copilot | `copilot plugin marketplace add devoncarew/slipstream` <br> `copilot plugin install flutter-slipstream@slipstream` |
-| Gemini CLI     | `gemini extensions install https://github.com/devoncarew/flutter-slipstream`                                       |
 
 > [!NOTE]
 >

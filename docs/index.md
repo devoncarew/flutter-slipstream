@@ -6,7 +6,7 @@ to read it.
 ## Architecture and Design
 
 - @docs/DESIGN.md — System overview: problem statement, distribution (Claude
-  Code / Gemini CLI / GitHub Copilot), and rationale for each of the three tools
+  Code / Cursor / GitHub Copilot), and rationale for each of the three tools
   (package safety skill, packages MCP, inspector MCP). Read first for
   architectural context before adding or changing any tool.
 

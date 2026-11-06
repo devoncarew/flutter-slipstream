@@ -9,9 +9,7 @@ flutter create --platforms=android,ios,macos,web showcase && \
   cd showcase && \
   rm test/*_test.dart && \
   mkdir .claude && \
-  mkdir .gemini && \
   echo "{}" > .claude/settings.json && \
-  echo "{}" > .gemini/settings.json && \
   flutter run -d macos
 ```
 
@@ -40,30 +38,6 @@ flutter create --platforms=android,ios,macos,web showcase && \
       "mcp__plugin_flutter-slipstream_inspector__get_semantics",
       "mcp__plugin_flutter-slipstream_inspector__get_route",
       "mcp__plugin_flutter-slipstream_inspector__close_app"
-    ]
-  }
-}
-```
-
-## .gemini/settings.json
-
-```
-{
-  "mcpServers": {
-    "inspector": {
-      "trust": true
-    },
-    "packages": {
-      "trust": true
-    }
-  },
-  "tools": {
-    "allowed": [
-      "read_file",
-      "write_file",
-      "replace",
-      "run_shell_command(dart)",
-      "run_shell_command(flutter)"
     ]
   }
 }

@@ -11,12 +11,6 @@ Load the Claude Code plugin locally:
 claude --plugin-dir /path/to/flutter-slipstream
 ```
 
-Load the Gemini CLI extension locally:
-
-```sh
-gemini extensions link /path/to/flutter-slipstream
-```
-
 Run all tests:
 
 ```sh
@@ -58,9 +52,9 @@ To cut a release:
 
 1. Run `dart run tool/repo.dart bump-version`. With no argument it reads the
    version from the top `-wip` changelog heading, then:
-   - bumps the `version` field in all four manifests
+   - bumps the `version` field in all plugin manifests
      (`.claude-plugin/plugin.json`, `.cursor-plugin/plugin.json`,
-     `.github/plugin/plugin.json`, and `gemini-extension.json`), and
+     and `.github/plugin/plugin.json`), and
    - renames the `## X.Y.Z-wip` changelog heading to `## X.Y.Z`.
 
    Pass an explicit version (e.g. `dart run tool/repo.dart bump-version 1.7.0`)
@@ -72,4 +66,4 @@ To cut a release:
    tagged `vX.Y.Z`.
 
 `dart run tool/repo.dart check-versions` validates that the version is in sync
-across all four manifests and the changelog; CI runs it on every PR.
+across all plugin manifests and the changelog; CI runs it on every PR.
