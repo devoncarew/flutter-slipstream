@@ -11,11 +11,19 @@
   ],
   "mcpServers": {
     "packages": {
-      "command": "dart run ${CLAUDE_PLUGIN_ROOT}/bin/packages_mcp.dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "${CLAUDE_PLUGIN_ROOT}/bin/packages_mcp.dart"
+      ],
       "cwd": "${CLAUDE_PLUGIN_ROOT}"
     },
     "inspector": {
-      "command": "dart run ${CLAUDE_PLUGIN_ROOT}/bin/inspector_mcp.dart",
+      "command": "dart",
+      "args": [
+        "run",
+        "${CLAUDE_PLUGIN_ROOT}/bin/inspector_mcp.dart"
+      ],
       "cwd": "${CLAUDE_PLUGIN_ROOT}"
     }
   }
