@@ -8,14 +8,17 @@
 
 Variable for the plugin root: `${CLAUDE_PLUGIN_ROOT}`
 
-`command` is a shell string — spaces and inline args are supported. `cwd` is
-also supported and should be set to `${CLAUDE_PLUGIN_ROOT}` so that `dart run`
-resolves the pubspec correctly.
+`command` must be the executable alone; arguments go in the `args` array.
+Claude Code spawns `command` directly, so a shell-style string such as
+`"dart run …/packages_mcp.dart"` fails to spawn. `cwd` is also supported and
+should be set to `${CLAUDE_PLUGIN_ROOT}` so that `dart run` resolves the
+pubspec correctly.
 
 ```json
 "mcpServers": {
   "packages": {
-    "command": "dart run ${CLAUDE_PLUGIN_ROOT}/bin/packages_mcp.dart",
+    "command": "dart",
+    "args": ["run", "${CLAUDE_PLUGIN_ROOT}/bin/packages_mcp.dart"],
     "cwd": "${CLAUDE_PLUGIN_ROOT}"
   }
 }
