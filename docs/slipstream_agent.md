@@ -1,5 +1,9 @@
 # slipstream_agent Companion Package
 
+> For agents working on this repo: how the inspector server uses the optional
+> `slipstream_agent` package. App-developer setup docs live in that package's
+> README.
+
 An optional Flutter dependency that upgrades the Slipstream MCP server from
 external observation (VM service + evaluate strings) to in-process cooperation
 (typed service extensions running inside the app).

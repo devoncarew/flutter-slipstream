@@ -1,8 +1,8 @@
 # Flutter Runtime Inspection: Concepts and Data Models
 
-Reference for working on the inspector MCP server. Covers the Flutter runtime
-model, VM service evaluate, semantics interaction, and the flag/action reference
-tables needed to interpret and filter the semantics tree.
+> For agents working on the inspector server: Flutter runtime concepts (the
+> four trees, VM service `evaluate`, semantics interaction) and the flag/action
+> tables needed to filter the semantics tree.
 
 ## The Four Trees
 

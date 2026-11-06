@@ -1,6 +1,6 @@
-# study-setup.md
+# User study setup
 
-A script to use to run periodic user studies on the tool.
+> For humans: setup script and prompt for running periodic user studies.
 
 ## Setup
 

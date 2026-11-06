@@ -1,6 +1,7 @@
-# smoke-test.md
+# Smoke test
 
-A script to use to run smoke tests on the tool.
+> For humans: a prompt to paste into an agent session to smoke-test the plugin
+> end to end.
 
 ## Smoke test prompt
 

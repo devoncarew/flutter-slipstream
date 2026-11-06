@@ -1,10 +1,7 @@
 # Design: Flutter Slipstream
 
-System design overview for flutter-slipstream: why it exists, how it's
-distributed, and the rationale behind each tool. Read this for architectural
-context before adding or changing any tool. For inspector-specific
-implementation details (device selection, `get_route` capabilities and
-limitations, go_router path enrichment), see `docs/inspector_design.md`.
+> For agents working on this repo: why the plugin exists, how it's distributed,
+> and the rationale for each tool. Read before adding or changing a tool.
 
 ## Problem Statement
 

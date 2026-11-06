@@ -1,5 +1,9 @@
 # Packages MCP Tool Reference
 
+> For agents working on this repo: the packages MCP server's code layout and
+> tool parameters. End-user agent guidance is in the `slipstream-packages`
+> skill.
+
 Server entry point: `bin/packages_mcp.dart`
 
 Tools for querying Dart and Flutter package APIs from the local pub cache.
