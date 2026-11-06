@@ -138,9 +138,32 @@ class ValidateManifestsCommand extends Command<void> {
     failed |= _validateJson(cursorManifest, _manifestKeys);
     failed |= _validateJson(copilotManifest, _manifestKeys);
     failed |= _validateJson(geminiManifest, _manifestKeys);
+    failed |= _validateClaudeServerCommands(claudeManifest);
 
     if (failed) exit(1);
     print('ok — all manifests are valid');
+  }
+
+  /// Claude Code spawns `command` as an executable; inline arguments belong in
+  /// `args`. A command string with arguments fails at spawn time with ENOENT.
+  bool _validateClaudeServerCommands(String filePath) {
+    final json =
+        jsonDecode(File(filePath).readAsStringSync()) as Map<String, dynamic>;
+    final servers = json['mcpServers'] as Map<String, dynamic>? ?? const {};
+    var failed = false;
+    for (final entry in servers.entries) {
+      final server = entry.value as Map<String, dynamic>;
+      final command = server['command'] as String? ?? '';
+      final args = server['args'] as List<dynamic>? ?? const [];
+      if (args.isEmpty && command.contains(' ')) {
+        stderr.writeln(
+          'error: $filePath: mcpServers.${entry.key}.command contains inline '
+          'arguments; move them into "args"',
+        );
+        failed = true;
+      }
+    }
+    return failed;
   }
 
   bool _validateJson(String filePath, List<String> requiredKeys) {

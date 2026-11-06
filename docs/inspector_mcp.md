@@ -26,7 +26,7 @@ Always call `get_output` after `run_app`, after `reload`, and after any
 interaction tool — it drains the buffer. If a `[flutter.error]` line appears,
 the widget ID in the summary can be passed to `inspect_layout`.
 
-## `run_app(working_directory, [target, device])`
+## `run_app(working_directory, [target, device, flavor])`
 
 Builds and launches the Flutter app. Call `get_output` after to see startup
 output.
@@ -35,6 +35,8 @@ output.
 - `target` — entry point (e.g. `lib/main.dart`). Defaults to project default.
 - `device` — device ID override. Omit to auto-select (prefers desktop for fast
   builds, then iOS simulator, then Android emulator, then physical device).
+- `flavor` — build flavor passed as `--flavor`. Required for projects whose
+  Android or iOS targets define flavor schemes.
 
 ## `reload([full_restart])`
 

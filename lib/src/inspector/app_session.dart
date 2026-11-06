@@ -117,6 +117,9 @@ class AppSession {
   /// When [deviceId] is omitted, auto-selects the best available device
   /// (preferring desktop, then simulators/emulators, then physical devices).
   ///
+  /// When [flavor] is provided, it is passed through as `--flavor`, which is
+  /// required for projects whose Android or iOS targets define flavor schemes.
+  ///
   /// Throws a [DaemonException] if the process exits before the app starts
   /// or if no suitable device can be found.
   static Future<AppSession> start({
@@ -125,6 +128,7 @@ class AppSession {
     required SessionFinishedCallback sessionFinishedListener,
     String? deviceId,
     String? target,
+    String? flavor,
     required DebugLogger serverLog,
   }) async {
     deviceId ??= await _autoSelectDevice(workingDirectory);
@@ -134,6 +138,7 @@ class AppSession {
       '--machine',
       if (deviceId != null) ...['--device-id', deviceId],
       if (target != null) ...['--target', target],
+      if (flavor != null) ...['--flavor', flavor],
     ];
 
     final Process process = await Process.start(

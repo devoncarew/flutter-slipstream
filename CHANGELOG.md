@@ -1,5 +1,12 @@
 ## 1.6.2-wip
 
+- Fixed the Claude Code plugin manifest: MCP servers now declare `command` and
+  `args` separately. Claude Code spawns `command` directly, so the previous
+  `"dart run …"` command string failed to spawn and neither server started.
+  `validate-manifests` now rejects command strings with inline arguments.
+- Added a `flavor` parameter to `run_app`, passed through as `--flavor`. Apps
+  whose Android or iOS targets define flavor schemes previously could not be
+  launched by the inspector.
 - Documented custom `flutter_driver` entrypoints in `docs/slipstream_agent.md`:
   initialization order, disabling text-entry emulation so the real keyboard
   works, and importing `flutter/material.dart` so `evaluate` and the screenshot
