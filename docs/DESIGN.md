@@ -22,9 +22,9 @@ failure modes:
 
 ## Distribution
 
-Shipped as a Claude Code plugin, a Cursor plugin, and a GitHub Copilot plugin.
-Each distribution registers the same MCP servers and skills — the agent-facing
-tool surface is identical across all of them.
+Shipped as a Claude Code plugin and a GitHub Copilot plugin. Each distribution
+registers the same MCP servers and skills — the agent-facing tool surface is
+identical across both.
 
 Low-friction installation: no manual server setup or prompt engineering
 required. Tools are automatically available via native primitives (Hooks, MCP)

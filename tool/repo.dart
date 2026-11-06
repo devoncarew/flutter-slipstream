@@ -34,15 +34,10 @@ void main(List<String> args) async {
 }
 
 final String claudeManifest = '.claude-plugin/plugin.json';
-final String cursorManifest = '.cursor-plugin/plugin.json';
 final String copilotManifest = '.github/plugin/plugin.json';
 
 /// All plugin manifests whose versions are kept in sync.
-final List<String> manifests = [
-  claudeManifest,
-  cursorManifest,
-  copilotManifest,
-];
+final List<String> manifests = [claudeManifest, copilotManifest];
 
 // ---------------------------------------------------------------------------
 
