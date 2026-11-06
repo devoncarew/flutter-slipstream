@@ -41,6 +41,43 @@ void main() {
 The `router` parameter is optional; omit it if the app doesn't use go_router or
 doesn't need `navigate` / `get_route`.
 
+### Custom entrypoints
+
+If the app is launched through its own `flutter_driver` entrypoint — for
+example a local-only `lib/main_driver.dart` used for screenshots and widget
+dumps — initialize the agent first, then install the driver extension before
+any other binding:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_driver/driver_extension.dart';
+import 'package:slipstream_agent/slipstream_agent.dart';
+
+import 'main.dart' as app;
+
+void main() {
+  SlipstreamAgent.init();
+  // Flutter Driver's text-entry emulation installs a mock IME, so TextFields
+  // focus but the system keyboard never opens. Disable it to drive the real
+  // app; perform_set_text still works because it writes through the controller.
+  enableFlutterDriverExtension(enableTextEntryEmulation: false);
+  app.main();
+}
+```
+
+`enableTextEntryEmulation: false` makes `FlutterDriver.enterText` fail, but
+Slipstream's `perform_set_text` writes through the controller and does not
+depend on it. `SlipstreamAgent.init()` registers VM service extensions and does
+not initialize a binding, so `enableFlutterDriverExtension()` can still install
+its own.
+
+Import `package:flutter/material.dart` (or `package:flutter/widgets.dart`) in
+the entrypoint even if no code there names it: `evaluate` defaults to the root
+library, and the screenshot probe evaluates
+`WidgetsBinding.instance.platformDispatcher…` in that scope.
+
+Keep this entrypoint local and out of release builds.
+
 ## Companion Detection
 
 The MCP server calls `ext.slipstream.ping` when connecting to the VM service:
