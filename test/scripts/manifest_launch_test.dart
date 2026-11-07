@@ -1,6 +1,8 @@
 // Launches each MCP server exactly as the plugin manifests declare it, from a
 // fresh copy of the plugin (no .dart_tool/) and a different working directory.
 // This mirrors a first run after a marketplace install.
+@Timeout(Duration(minutes: 3))
+library;
 
 import 'dart:convert';
 import 'dart:io';
@@ -44,37 +46,33 @@ void main() {
 
     group(manifest, () {
       for (final MapEntry(key: name, value: server) in servers.entries) {
-        test(
-          '$name starts from a fresh install',
-          () async {
-            final Map<String, dynamic> config = server as Map<String, dynamic>;
-            final List<String> args = [
-              for (final Object? arg in config['args'] as List)
-                (arg as String).replaceAll(rootVar, pluginRoot.path),
-            ];
+        test('$name starts from a fresh install', () async {
+          final Map<String, dynamic> config = server as Map<String, dynamic>;
+          final List<String> args = [
+            for (final Object? arg in config['args'] as List)
+              (arg as String).replaceAll(rootVar, pluginRoot.path),
+          ];
 
-            final Process process = await Process.start(
-              config['command'] as String,
-              args,
-              workingDirectory: projectDir.path,
-              runInShell: Platform.isWindows,
-            );
-            addTearDown(process.kill);
-            final StringBuffer stderrText = StringBuffer();
-            process.stderr.transform(utf8.decoder).listen(stderrText.write);
+          final Process process = await Process.start(
+            config['command'] as String,
+            args,
+            workingDirectory: projectDir.path,
+            runInShell: Platform.isWindows,
+          );
+          addTearDown(process.kill);
+          final StringBuffer stderrText = StringBuffer();
+          process.stderr.transform(utf8.decoder).listen(stderrText.write);
 
-            final List<String> tools;
-            try {
-              tools = await listMcpTools(
-                process,
-              ).timeout(const Duration(minutes: 2));
-            } catch (e) {
-              fail('$name failed to start: $e\nstderr:\n$stderrText');
-            }
-            expect(tools, isNotEmpty);
-          },
-          timeout: const Timeout(Duration(minutes: 3)),
-        );
+          final List<String> tools;
+          try {
+            tools = await listMcpTools(
+              process,
+            ).timeout(const Duration(minutes: 2));
+          } catch (e) {
+            fail('$name failed to start: $e\nstderr:\n$stderrText');
+          }
+          expect(tools, isNotEmpty);
+        });
       }
     });
   }
