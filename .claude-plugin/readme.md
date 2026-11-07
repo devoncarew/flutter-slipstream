@@ -13,19 +13,24 @@ Variable for the plugin root: `${CLAUDE_PLUGIN_ROOT}`
 
 `command` must be the executable alone; arguments go in the `args` array.
 Claude Code spawns `command` directly, so a shell-style string such as
-`"dart run …/packages_mcp.dart"` fails to spawn. `cwd` is also supported and
-should be set to `${CLAUDE_PLUGIN_ROOT}` so that `dart run` resolves the
-pubspec correctly.
+`"dart run …/packages_mcp.dart"` fails to spawn.
+
+Servers are launched from the user's project directory; `cwd` is ignored. Use
+`dart pub -C <plugin-root> run`, not `dart run <abs-path>`: `dart run` only
+resolves dependencies for the package in the current directory, so on a fresh
+install (no `.dart_tool/`) it fails with "Couldn't resolve the package".
 
 ```json
 "mcpServers": {
   "packages": {
     "command": "dart",
-    "args": ["run", "${CLAUDE_PLUGIN_ROOT}/bin/packages_mcp.dart"],
-    "cwd": "${CLAUDE_PLUGIN_ROOT}"
+    "args": ["pub", "-C", "${CLAUDE_PLUGIN_ROOT}", "run", "bin/packages_mcp.dart"]
   }
 }
 ```
+
+`test/scripts/manifest_launch_test.dart` launches each server this way from a
+fresh copy.
 
 ## Distribution
 
