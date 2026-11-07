@@ -15,15 +15,16 @@ MCP servers require `"type": "local"`. The `command` field must be the
 executable name only (no shell expansion — spaces are not supported). Arguments
 go in `args`, which is a required field for schema validation even when empty.
 
-No `cwd` field is supported. For `dart run <absolute-path>`, this is fine
-because Dart resolves the pubspec by walking up from the script file's location.
+No `cwd` field is supported. Use `dart pub -C <plugin-root> run`, not
+`dart run <abs-path>`: `dart run` only resolves dependencies for the package in
+the current directory, so a fresh install (no `.dart_tool/`) fails.
 
 ```json
 "mcpServers": {
   "packages": {
     "type": "local",
     "command": "dart",
-    "args": ["run", "${PLUGIN_ROOT}/bin/packages_mcp.dart"]
+    "args": ["pub", "-C", "${PLUGIN_ROOT}", "run", "bin/packages_mcp.dart"]
   }
 }
 ```

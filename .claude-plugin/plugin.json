@@ -13,18 +13,22 @@
     "packages": {
       "command": "dart",
       "args": [
+        "pub",
+        "-C",
+        "${CLAUDE_PLUGIN_ROOT}",
         "run",
-        "${CLAUDE_PLUGIN_ROOT}/bin/packages_mcp.dart"
-      ],
-      "cwd": "${CLAUDE_PLUGIN_ROOT}"
+        "bin/packages_mcp.dart"
+      ]
     },
     "inspector": {
       "command": "dart",
       "args": [
+        "pub",
+        "-C",
+        "${CLAUDE_PLUGIN_ROOT}",
         "run",
-        "${CLAUDE_PLUGIN_ROOT}/bin/inspector_mcp.dart"
-      ],
-      "cwd": "${CLAUDE_PLUGIN_ROOT}"
+        "bin/inspector_mcp.dart"
+      ]
     }
   }
 }

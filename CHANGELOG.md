@@ -3,6 +3,11 @@
 - Removed Gemini CLI support; Gemini CLI has been retired in favor of
   Antigravity.
 - Removed Cursor support.
+- Fixed the MCP servers failing to start on a fresh install ("Couldn't resolve
+  the package 'dart_mcp'"). The Claude Code and Copilot manifests now launch
+  servers with `dart pub -C <plugin-root> run`, since `dart run <abs-path>`
+  only resolves dependencies for the current directory's package. A new test
+  launches each server from a fresh copy to catch regressions.
 
 ## 1.6.2
 

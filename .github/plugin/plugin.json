@@ -14,16 +14,22 @@
       "type": "local",
       "command": "dart",
       "args": [
+        "pub",
+        "-C",
+        "${PLUGIN_ROOT}",
         "run",
-        "${PLUGIN_ROOT}/bin/packages_mcp.dart"
+        "bin/packages_mcp.dart"
       ]
     },
     "inspector": {
       "type": "local",
       "command": "dart",
       "args": [
+        "pub",
+        "-C",
+        "${PLUGIN_ROOT}",
         "run",
-        "${PLUGIN_ROOT}/bin/inspector_mcp.dart"
+        "bin/inspector_mcp.dart"
       ]
     }
   }
