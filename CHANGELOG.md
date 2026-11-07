@@ -1,4 +1,4 @@
-## 1.7.0-wip
+## 1.7.0
 
 - Removed Gemini CLI support; Gemini CLI has been retired in favor of
   Antigravity.
@@ -8,6 +8,8 @@
   servers with `dart pub -C <plugin-root> run`, since `dart run <abs-path>`
   only resolves dependencies for the current directory's package. A new test
   launches each server from a fresh copy to catch regressions.
+  As a side effect, server startup is faster (`dart pub run` caches a compiled
+  snapshot): roughly 0.3–0.7s instead of 1–5s.
 
 ## 1.6.2
 
